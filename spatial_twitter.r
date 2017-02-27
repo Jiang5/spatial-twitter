@@ -29,3 +29,10 @@ mapCenter = c(-98, 40)
 #inspred by Domino,https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/
 USAMap = ggmap(get_googlemap(center = mapCenter, scale = 2, zoom = 4), extent="normal")
 USAMap + geom_point(aes(x = lon, y = lat), data = land, col = "red", alpha = 0.5, size = as.numeric(land$num)*0.05) 
+
+keyword = "San Fransisco"
+#trendgeo = geocode(keyword), but query beyond API limit
+trendgeo = c(38, -122)
+found = closestTrendLocations(trendgeo[1],trendgeo[2])
+trend = getTrends(found["woeid"])
+print(trend[1:20,])
